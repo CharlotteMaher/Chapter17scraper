@@ -14,6 +14,8 @@ def scrape_table(root):
         record = {}
         table_cells = row.cssselect("td")
         if table_cells: 
+            table_cellsurls = table_cells[1].cssselect("a")
+            record['HospitalURL'] = table_cellsurls[1].attrib.get('href')
             record['Date'] = table_cells[0].text
             record['Hospital'] = table_cells[1].text
             record['Region'] = table_cells[2].text
