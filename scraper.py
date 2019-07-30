@@ -1,7 +1,4 @@
-###############################################################################
-# START HERE: Tutorial 3: More advanced scraping. Shows how to follow 'next' 
-# links from page to page: use functions, so you can call the same code 
-# repeatedly. SCROLL TO THE BOTTOM TO SEE THE START OF THE SCRAPER.
+############################################################################## Chapter 17.
 ###############################################################################
 
 import scraperwiki
@@ -9,6 +6,7 @@ import urlparse
 import lxml.html
 
 # scrape_table function: gets passed an individual page to scrape
+#defining parameter here - can change root to any word in this function (jim example)- put filling here 
 def scrape_table(root):
     rows = root.cssselect("table.Trolley.table tr") # selects all <tr> blocks within <table class="Trolley table"> 
     for row in rows:
@@ -28,18 +26,14 @@ def scrape_table(root):
         
 # scrape_and_look_for_next_link function: calls the scrape_table
 # function, then hunts for a 'next' link: if one is found, calls itself again
+#url in this example is the parameter (general filling)- defining the parameter- can put startingurl here and will work.
 def scrape_and_look_for_next_link(url):
     html = scraperwiki.scrape(url)
     print html
+    #root here is being defined as argument- the specific filling. 
     root = lxml.html.fromstring(html)
     scrape_table(root)
-    next_link = root.cssselect("a.next")
-    print next_link
-    if next_link:
-        next_url = urlparse.urljoin(base_url, next_link[0].attrib.get('href'))
-        print next_url
-        scrape_and_look_for_next_link(next_url)
-
+#deleted previous code from chapter 16 scraper because only scraping one page
 # ---------------------------------------------------------------------------
 # START HERE: define your starting URL - then 
 # call a function to scrape the first page in the series.
@@ -47,5 +41,6 @@ def scrape_and_look_for_next_link(url):
 # START HERE: define your starting URL - then call a function to scrape it
 starting_url = 'http://inmo.ie/6022'
 scrape_and_look_for_next_link(starting_url)
+#the starting url is the argument (specific filling) - defining the actual argument used in the function above. 
 
 
