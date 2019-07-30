@@ -16,15 +16,15 @@ def scrape_table(root):
 if table_cells: 
     table_cellsurls = table_cells[1].cssselect("a")
     record['HospitalURL'] = table_cellsurls[1].attrib.get('href')
-            record['Date'] = table_cells[0].text
-            record['Hospital'] = table_cells[1].text
-            record['Region'] = table_cells[2].text
-            record['Trolley total'] = table_cells[3].text
-            record['Ward total'] = table_cells[4].text
+    record['Date'] = table_cells[0].text
+    record['Hospital'] = table_cells[1].text
+    record['Region'] = table_cells[2].text
+    record['Trolley total'] = table_cells[3].text
+    record['Ward total'] = table_cells[4].text
             # Print out the data we've gathered
-            print record, '------------'
-            # Finally, save the record to the datastore - 'Artist' is our unique key
-            scraperwiki.sqlite.save(["Hospital"], record)
+    print record, '------------'
+           # Finally, save the record to the datastore - 'Artist' is our unique key
+    scraperwiki.sqlite.save(["Hospital"], record)
         
 # scrape_and_look_for_next_link function: calls the scrape_table
 # function, then hunts for a 'next' link: if one is found, calls itself again
